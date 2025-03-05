@@ -18,12 +18,14 @@ pipeline{
         stage('dockerImageBuild'){
             steps{
                 sh 'docker build -t jenkins-ci-not-to-be-delete .'
+                sh 'docker -t image .'
             }
         }
         stage('dockerImageTag'){
             steps{
                 sh 'docker tag jenkins-ci-not-to-be-delete:latest\
                 867344455679.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci-not-to-be-delete:latest'
+                sh 'docker tag jenkins-ci-not-to-be-delete:latest 867344455679.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci-not-to-be-delete:v1.$BUILD_NUMBER'
             }
         }
        
@@ -31,6 +33,7 @@ pipeline{
         stage('pushImage'){
             steps{
                 sh 'docker push 867344455679.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci-not-to-be-delete:latest'
+                sh 'docker push 867344455679.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci-not-to-be-delete:v1.$BUILD_NUMBER'
             }
         }
     
