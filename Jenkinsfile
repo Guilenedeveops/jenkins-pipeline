@@ -30,7 +30,7 @@ pipeline{
 
         stage('pushImage'){
             steps{
-                sh 'docker ps'
+                sh 'docker push 867344455679.dkr.ecr.us-east-1.amazonaws.com/jenkins-ci-not-to-be-delete:latest'
             }
         }
     
