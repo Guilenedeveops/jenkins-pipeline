@@ -18,7 +18,7 @@ pipeline{
         stage('dockerImageBuild'){
             steps{
                 sh 'docker build -t jenkins-ci-not-to-be-delete .'
-                sh 'docker -t image .'
+                sh 'docker build -t imageVersion .'
             }
         }
         stage('dockerImageTag'){
